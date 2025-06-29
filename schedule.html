@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planejador Semanal Avançado - IA/ML</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="schedule.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <h1 class="title">📅 Planejador Semanal Avançado</h1>
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar ao Cronograma
+                </a>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="weekSelect">Semana:</label>
+                    <select id="weekSelect">
+                        <!-- Será preenchido via JavaScript com todas as 24 semanas -->
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <button id="saveBtn" class="nav-btn">
+                        <i class="fas fa-save"></i>
+                        Salvar
+                    </button>
+                    <button id="resetBtn" class="nav-btn reset-btn">
+                        <i class="fas fa-trash-restore"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <div class="week-navigation">
+                <button class="nav-btn" id="prevWeek">
+                    <i class="fas fa-chevron-left"></i>
+                    Anterior
+                </button>
+                <div class="week-info" id="weekInfo">
+                    Semana 1 - Lógica de Programação Pura
+                </div>
+                <button class="nav-btn" id="nextWeek">
+                    Próxima
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="theme-legend">
+                <div class="legend-item">
+                    <div class="legend-color logic"></div>
+                    <span><span class="emoji-icon logic-emoji">⚡</span> Lógica de Programação</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color theory"></div>
+                    <span><span class="emoji-icon theory-emoji">📖</span> Teoria & Conceitos</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color practice"></div>
+                    <span><span class="emoji-icon practice-emoji">⚙️</span> Prática & Exercícios</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color break"></div>
+                    <span><span class="emoji-icon break-emoji">☕</span> Pausas & Intervalos</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color review"></div>
+                    <span><span class="emoji-icon review-emoji">🔍</span> Revisão & Reflexão</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="schedule-container">
+                <div class="schedule-grid" id="scheduleGrid">
+                    <!-- Será preenchido via JavaScript com horários 10h-00h -->
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <h3><i class="fas fa-cubes"></i> Blocos Pré-definidos</h3>
+                <div class="preset-blocks" id="presetBlocks">
+                    <!-- Será preenchido via JavaScript -->
+                </div>
+
+                <div class="keyboard-shortcuts">
+                    <h4><i class="fas fa-keyboard"></i> Atalhos de Teclado</h4>
+                    <div class="shortcut">
+                        <span>Salvar</span>
+                        <span class="shortcut-key">Ctrl+S</span>
+                    </div>
+                    <div class="shortcut">
+                        <span>Duplicar Bloco</span>
+                        <span class="shortcut-key">Ctrl+D</span>
+                    </div>
+                    <div class="shortcut">
+                        <span>Deletar Bloco</span>
+                        <span class="shortcut-key">Del</span>
+                    </div>
+                    <div class="shortcut">
+                        <span>Semana Anterior</span>
+                        <span class="shortcut-key">←</span>
+                    </div>
+                    <div class="shortcut">
+                        <span>Próxima Semana</span>
+                        <span class="shortcut-key">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="progress-section">
+        <h3 style="margin-bottom: 15px; text-align: center;"><i class="fas fa-chart-bar"></i> Progresso da Semana</h3>
+        <div class="progress-grid" id="progressGrid">
+            <!-- Será preenchido via JavaScript -->
+        </div>
+    </div>
+
+    <div class="save-indicator" id="saveIndicator">
+        <i class="fas fa-check"></i>
+        Salvo automaticamente
+    </div>
+
+    <!-- Sistema de persistência de dados -->
+    <script src="dataManager.js"></script>
+    <!-- Sistema principal do planejador -->
+    <script src="schedule.js"></script>
+</body>
+</html> 
