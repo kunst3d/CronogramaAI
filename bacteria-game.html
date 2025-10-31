@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bacteria Evolution Simulator - IA Avançada</title>
+    <link rel="stylesheet" href="bacteria-game.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header -->
+        <header>
+            <h1>🦠 Simulador de Evolução Bacteriana</h1>
+            <p class="subtitle">Observe a inteligência artificial evoluir em tempo real</p>
+        </header>
+
+        <!-- Main Game Area -->
+        <div id="main-content">
+            <!-- Canvas -->
+            <div id="canvas-container">
+                <canvas id="game-canvas"></canvas>
+                <div id="fps-counter">FPS: 60</div>
+            </div>
+
+            <!-- Side Panel -->
+            <div id="side-panel">
+                <!-- Stats Panel -->
+                <div class="panel stats-panel">
+                    <h2>📊 Estatísticas Globais</h2>
+                    <div class="stat-row">
+                        <span class="stat-label">População Total:</span>
+                        <span class="stat-value" id="total-population">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🌱 Herbívoras:</span>
+                        <span class="stat-value herbivore" id="herbivore-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🦷 Carnívoras:</span>
+                        <span class="stat-value carnivore" id="carnivore-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🍃 Alimento Disponível:</span>
+                        <span class="stat-value" id="food-count">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">⏱️ Tempo:</span>
+                        <span class="stat-value" id="game-time">0s</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">🧬 Gerações:</span>
+                        <span class="stat-value" id="generation-count">1</span>
+                    </div>
+                </div>
+
+                <!-- Selected Bacteria Info -->
+                <div class="panel bacteria-info-panel" id="bacteria-info">
+                    <h2>🔬 Bactéria Selecionada</h2>
+                    <p class="info-placeholder">Clique em uma bactéria para ver seus detalhes</p>
+                    <div id="bacteria-details" style="display: none;">
+                        <div class="dna-visualization" id="dna-viz"></div>
+                        <div class="stat-row">
+                            <span class="stat-label">Tipo:</span>
+                            <span class="stat-value" id="selected-type">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Gênero:</span>
+                            <span class="stat-value" id="selected-gender">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Geração:</span>
+                            <span class="stat-value" id="selected-generation">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Energia:</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="selected-energy"></div>
+                            </div>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Velocidade:</span>
+                            <span class="stat-value" id="selected-speed">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Tamanho:</span>
+                            <span class="stat-value" id="selected-size">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Visão:</span>
+                            <span class="stat-value" id="selected-vision">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Descendentes:</span>
+                            <span class="stat-value" id="selected-offspring">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upgrades Panel -->
+                <div class="panel upgrades-panel" id="upgrades-panel" style="display: none;">
+                    <h2>⚡ Escolha um Upgrade</h2>
+                    <p class="upgrade-description">Selecione uma modificação para o ecossistema:</p>
+                    <div id="upgrade-options"></div>
+                </div>
+
+                <!-- Controls -->
+                <div class="panel controls-panel">
+                    <h2>🎮 Controles</h2>
+                    <button id="pause-btn" class="control-btn">⏸️ Pausar</button>
+                    <button id="speed-btn" class="control-btn">⏩ Velocidade: 1x</button>
+                    <button id="reset-btn" class="control-btn danger">🔄 Reiniciar</button>
+                    <div class="control-options">
+                        <label>
+                            <input type="checkbox" id="show-vision" checked>
+                            Mostrar Visão
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-groups" checked>
+                            Mostrar Grupos
+                        </label>
+                        <label>
+                            <input type="checkbox" id="show-trails">
+                            Mostrar Rastros
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="panel legend-panel">
+                    <h2>📖 Legenda</h2>
+                    <div class="legend-item">
+                        <div class="legend-color herbivore-color"></div>
+                        <span>Herbívora (come plantas)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color carnivore-color"></div>
+                        <span>Carnívora (come bactérias)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color food-color"></div>
+                        <span>Alimento (plantas)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span style="margin-left: 10px;">💙 = Macho | 💗 = Fêmea</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div id="notification-container"></div>
+    </div>
+
+    <script src="bacteria-game.js"></script>
+</body>
+</html>
